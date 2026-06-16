@@ -2,7 +2,7 @@ import requests
 import requests_cache
 from datetime import timedelta
 from settings import FORECAST_CACHE, REQUEST_WEATHER_FORECAST_URL, PARAMS
-from api_clients.open_meteo_geo import fetch_json
+from api_clients.get_request_api import fetch_json
 
 session_forecast = requests_cache.CachedSession(FORECAST_CACHE, expire_after=timedelta(hours=1))
 
