@@ -1,4 +1,5 @@
 from api_clients.open_meteo_geo import fetch_city
+from api_clients.open_meteo_forecast import fetch_forecast
 from parsers.city_parser import city_parser
 from models.city import City
 from support_item.helpers import add_city_obj
@@ -17,3 +18,8 @@ lviv = add_city_obj(clean_city_lviv)
 zaporizhzhia.show_city()
 lviv.show_city()
 
+zaporizhzhia_forecast = fetch_forecast(zaporizhzhia)
+
+print(type(zaporizhzhia_forecast))
+for key, value in zaporizhzhia_forecast.items():
+    print(f'{key}: {value}')
