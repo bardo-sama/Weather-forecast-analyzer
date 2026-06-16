@@ -1,0 +1,35 @@
+import pandas as pd
+
+def parse_forecast(forecast, city):
+
+    weather = forecast.get('hourly', [])
+    if not weather:
+        return pd.DataFrame()
+
+    forecast_df = pd.DataFrame(weather)
+
+    forecast_df['name'] = city.name
+    forecast_df['latitude'] = city.latitude
+    forecast_df['longitude'] = city.longitude
+
+    forecast_df['datetime'] = pd.to_datetime(forecast_df['time'])
+    forecast_df['date'] = forecast_df['datetime'].dt.strftime("%Y-%m-%d")
+    forecast_df['hour'] = forecast_df['datetime'].dt.hour
+    forecast_df['weekday'] = forecast_df['datetime'].dt.day_name()
+    forecast_df['datetime'] = forecast_df['datetime'].dt.strftime("%Y-%m-%dT%H:%M")
+
+    front_columns = ['name', 'latitude', 'longitude', 'datetime', 'date','weekday', 'hour']
+
+    other_columns = [column for column in forecast_df.columns
+                     if column not in front_columns]
+
+    forecast_df = forecast_df[front_columns + other_columns]
+
+    forecast_df = forecast_df.drop(columns=['time'])
+
+    return forecast_df
+
+
+
+
+

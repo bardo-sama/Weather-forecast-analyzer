@@ -12,7 +12,7 @@ def get_geonames(city_name):
     elif city_name == 'Mykolayiv':
         return 'Mykolaiv'
 
-    return city_name
+    return city_name.strip().upper()
 
 def return_right_name(name):
 
@@ -24,7 +24,7 @@ def return_right_name(name):
         name = 'Mykolaiv'
         return name
 
-    return name
+    return name.strip().upper()
 
 
 def add_city_obj(city_data):

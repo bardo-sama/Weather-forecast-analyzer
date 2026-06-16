@@ -1,4 +1,3 @@
-import requests
 import requests_cache
 from settings import CITY_CACHE, REQUEST_NAME_URL
 from datetime import timedelta

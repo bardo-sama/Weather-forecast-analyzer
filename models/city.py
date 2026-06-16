@@ -15,3 +15,10 @@ class City:
         print(f'\tДовгота: {self.longitude}')
         print(f'Регіон: {self.timezone} - ({self.country_code})')
         print('-' * 18)
+
+    def to_small_dict(self):
+        return {
+            'name': self.name,
+            'latitude': self.latitude,
+            'longitude': self.longitude
+        }

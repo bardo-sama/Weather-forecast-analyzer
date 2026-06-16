@@ -1,4 +1,3 @@
-import requests
 import requests_cache
 from datetime import timedelta
 from settings import FORECAST_CACHE, REQUEST_WEATHER_FORECAST_URL, PARAMS
@@ -12,7 +11,7 @@ def fetch_forecast(city):
         'latitude': city.latitude,
         'longitude': city.longitude,
         'hourly': PARAMS,
-        "forecast_days": 3  # max = 16 days
+        "forecast_days": 2  # max = 16 days
     }
 
     result = fetch_json(session=session_forecast, url=REQUEST_WEATHER_FORECAST_URL, params=params)
