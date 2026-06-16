@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime, timezone
 
 def fetch_json(session, url, params):
     """
@@ -29,6 +30,7 @@ def fetch_json(session, url, params):
     else:
         print("\nThe function has successfully.")
         print(f"URL: {response.url}")
+
         if response.from_cache:
             print(f"Response from cache.\n")
         else:
