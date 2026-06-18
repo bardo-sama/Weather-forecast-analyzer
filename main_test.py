@@ -24,6 +24,7 @@ print(type(zaporizhzhia_forecast))
 for key, value in zaporizhzhia_forecast.items():
     print(f'{key}: {value}')
 
-zp_weather_forecast = parse_forecast(zaporizhzhia_forecast, zaporizhzhia)
+test_parse_forecast = parse_forecast(zaporizhzhia_forecast, zaporizhzhia)
 
-zp_weather_forecast.info()
+print(type(test_parse_forecast))
+test_parse_forecast.info()

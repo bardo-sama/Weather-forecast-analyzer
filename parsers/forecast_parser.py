@@ -2,7 +2,7 @@ import pandas as pd
 
 def parse_forecast(forecast, city):
 
-    weather = forecast.get('hourly', [])
+    weather = forecast.get('data', {}).get('hourly', [])
     if not weather:
         return pd.DataFrame()
 
