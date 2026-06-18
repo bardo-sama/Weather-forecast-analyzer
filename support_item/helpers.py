@@ -49,8 +49,8 @@ def add_city_obj(city_data):
 def add_forecast_obj(data):
 
     return Forecast(data.loc[0,'name'], 'open_meteo', data.loc[0, 'latitude'],
-                    data.loc[0, 'longitude'], data.loc[0, 'requested_at'],
-                    data.loc[0, 'date'], data.loc[-1, 'date'], data[['date', 'hour', 'temperature_2m']])
+                    data.loc[0, 'longitude'], data.loc[0, 'request_t'],
+                    data.loc[0, 'date'], data.iloc[-1]['date'], data[['date', 'hour', 'temperature_2m']])
 
 
 
