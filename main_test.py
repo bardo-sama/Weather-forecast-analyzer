@@ -20,6 +20,7 @@ lviv.show_city()
 
 zaporizhzhia_forecast = fetch_forecast(zaporizhzhia)
 
+
 print(type(zaporizhzhia_forecast))
 for key, value in zaporizhzhia_forecast.items():
     print(f'{key}: {value}')
@@ -28,3 +29,5 @@ test_parse_forecast = parse_forecast(zaporizhzhia_forecast, zaporizhzhia)
 
 print(type(test_parse_forecast))
 test_parse_forecast.info()
+test_parse = test_parse_forecast.loc[0,'request_t']
+print(test_parse)

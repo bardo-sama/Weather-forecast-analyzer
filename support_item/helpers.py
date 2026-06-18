@@ -1,7 +1,8 @@
+from datetime import datetime
 from models.city import City
 from models.forecast import Forecast
-from parsers.forecast_parser import parse_forecast
-from parsers.data_parse import parse_datetime
+
+
 
 def get_geonames(city_name):
     """
@@ -28,16 +29,28 @@ def return_right_name(name):
 
     return name.strip().upper()
 
+def pretty_date(date):
+
+    raw_date = date.get('requested_time', None)
+    if raw_date is None:
+        return False
+    dt = datetime.fromisoformat(raw_date)
+
+    dt_clean = dt.strftime("%Y-%m-%d")
+    return dt_clean
+
+
 
 def add_city_obj(city_data):
 
     return City(city_data.get('name'), city_data.get('latitude'), city_data.get('longitude'),
                 city_data.get('country_code'), city_data.get('timezone'))
 
-def add_forecast_obj(data, city):
+def add_forecast_obj(data):
 
-    datetime = parse_datetime(data)
+    return Forecast(data.loc[0,'name'], 'open_meteo', data.loc[0, 'latitude'],
+                    data.loc[0, 'longitude'], data.loc[0, 'requested_at'],
+                    data.loc[0, 'date'], data.loc[-1, 'date'], data[['date', 'hour', 'temperature_2m']])
 
-    forecast = parse_forecast(data, city)
 
-    forecast_obj = Forecast(forecast.loc(0, 'name'))
+

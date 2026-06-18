@@ -17,15 +17,13 @@ def fetch_forecast(city):
     requests_time = datetime.now(timezone.utc)
     # Запит
     result = fetch_json(session=session_forecast, url=REQUEST_WEATHER_FORECAST_URL, params=params)
-    # Час завершення запиту
-    received_time = datetime.now(timezone.utc)
+
 
     if not result:
         return {}
 
     return {
         'requested_time': requests_time.isoformat(),
-        'received_time': received_time.isoformat(),
         'data': result
     }
 

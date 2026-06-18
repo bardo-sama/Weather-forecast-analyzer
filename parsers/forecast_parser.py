@@ -1,6 +1,9 @@
 import pandas as pd
+from support_item.helpers import pretty_date
 
 def parse_forecast(forecast, city):
+
+    request_time = pretty_date(forecast)
 
     weather = forecast.get('data', {}).get('hourly', [])
     if not weather:
@@ -15,10 +18,10 @@ def parse_forecast(forecast, city):
     forecast_df['datetime'] = pd.to_datetime(forecast_df['time'])
     forecast_df['date'] = forecast_df['datetime'].dt.strftime("%Y-%m-%d")
     forecast_df['hour'] = forecast_df['datetime'].dt.hour
-    forecast_df['weekday'] = forecast_df['datetime'].dt.day_name()
-    forecast_df['datetime'] = forecast_df['datetime'].dt.strftime("%Y-%m-%dT%H:%M")
+    forecast_df['datetime'] = forecast_df['datetime'].dt.strftime("%Y-%m-%d T%H:%M")
+    forecast_df['request_t'] = request_time
 
-    front_columns = ['name', 'latitude', 'longitude', 'datetime', 'date','weekday', 'hour']
+    front_columns = ['name', 'latitude', 'longitude','request_t', 'datetime', 'date', 'hour']
 
     other_columns = [column for column in forecast_df.columns
                      if column not in front_columns]
