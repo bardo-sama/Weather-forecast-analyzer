@@ -3,12 +3,12 @@ from support_item.helpers import pretty_date
 
 def parse_forecast(forecast, city):
 
-    request_time = pretty_date(forecast)
-
     weather = forecast.get('data', {}).get('hourly', [])
-    if not weather:
-        return pd.DataFrame()
 
+    if not weather:
+        return False
+
+    request_time = pretty_date(forecast)
     forecast_df = pd.DataFrame(weather)
 
     forecast_df['name'] = city.name
@@ -21,7 +21,7 @@ def parse_forecast(forecast, city):
     forecast_df['datetime'] = forecast_df['datetime'].dt.strftime("%Y-%m-%d T%H:%M")
     forecast_df['request_t'] = request_time
 
-    front_columns = ['name', 'latitude', 'longitude','request_t', 'datetime', 'date', 'hour']
+    front_columns = ['name', 'latitude', 'longitude', 'request_t', 'datetime', 'date', 'hour']
 
     other_columns = [column for column in forecast_df.columns
                      if column not in front_columns]

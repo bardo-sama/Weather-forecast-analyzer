@@ -1,14 +1,14 @@
 class City:
-    def __init__(self, name, latitude, longitude, country_code=None, timezone=None, forecast=None):
+    def __init__(self, name, latitude, longitude, country_code=None, timezone=None, forecasts=None):
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
         self.country_code = country_code
         self.timezone = timezone
-        if forecast is None:
-            self.forecast = []
+        if forecasts is None:
+            self.forecasts = []
         else:
-            self.forecast = list(forecast)
+            self.forecasts = list(forecasts)
     def show_city(self):
 
         print('-' * 18)
@@ -17,17 +17,17 @@ class City:
         print(f'\tШирота: {self.latitude}')
         print(f'\tДовгота: {self.longitude}')
         print(f'Регіон: {self.timezone} - ({self.country_code})')
-        if self.forecast:
+        if self.forecasts:
             print('Прогноз: доступний')
         else:
             print('Прогноз: дані відсутні')
         print('-' * 18)
 
-    def get_forecast(self, forecast):
+    def add_forecast(self, forecast):
         if not forecast:
             return False
         else:
-            self.forecast.append(forecast)
+            self.forecasts.append(forecast)
             return True
 
     def to_small_dict(self):

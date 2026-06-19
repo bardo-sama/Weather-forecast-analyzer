@@ -15,7 +15,7 @@ def get_geonames(city_name):
     elif city_name == 'Mykolayiv':
         return 'Mykolaiv'
 
-    return city_name.strip().upper()
+    return city_name.strip().title()
 
 def return_right_name(name):
 
@@ -27,7 +27,7 @@ def return_right_name(name):
         name = 'Mykolaiv'
         return name
 
-    return name.strip().upper()
+    return name.strip().title()
 
 def pretty_date(date):
 
@@ -48,9 +48,9 @@ def add_city_obj(city_data):
 
 def add_forecast_obj(data):
 
-    return Forecast(data.loc[0,'name'], 'open_meteo', data.loc[0, 'latitude'],
-                    data.loc[0, 'longitude'], data.loc[0, 'request_t'],
-                    data.loc[0, 'date'], data.iloc[-1]['date'], data[['date', 'hour', 'temperature_2m']])
+    return Forecast(data.iloc[0]['name'], 'open_meteo', data.iloc[0]['latitude'],
+                    data.iloc[0]['longitude'], data.iloc[0]['request_t'],
+                    data.iloc[0]['datetime'], data.iloc[-1]['datetime'], data[['date', 'hour', 'temperature_2m']])
 
 
 

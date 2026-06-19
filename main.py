@@ -19,7 +19,7 @@ def test_main():
     # Створ. об'єкт класу - Forecast
     zaporizhzhia_forecast_data = add_forecast_obj(test_parse_forecast)
 
-    zaporizhzhia.get_forecast(zaporizhzhia_forecast_data)
+    zaporizhzhia.add_forecast(zaporizhzhia_forecast_data)
     zaporizhzhia.show_city()
 
 if __name__ == '__main__':
