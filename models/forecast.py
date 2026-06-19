@@ -14,7 +14,7 @@ class Forecast:
         print(f'Джерело: {self.source}')
         print(f'Дата збору даних: {self.collected_date}')
         print(f'Період:\n\t{self.period_start}\n\t{self.period_end}')
-        print(f'Кількість записів: {len(self.weather_data['date'])}')
+        print(f'Кількість записів: {len(self.weather_data['date'])} записи.')
 
     def to_dict(self):
 
@@ -32,7 +32,5 @@ class Forecast:
                 },
             'weather_data': self.weather_data.to_dict('records')
         }
-        if not obj_datafile:
-            print('FIle is empty.')
-            return False
+
         return obj_datafile

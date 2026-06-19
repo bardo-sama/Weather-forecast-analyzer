@@ -27,6 +27,11 @@ def test_main():
     one = zaporizhzhia.forecasts[0]
     one.show_summary()
 
+    to_dict_test = zaporizhzhia.to_dict()
+
+    for key, value in to_dict_test.items():
+        print(f"{key}: {value}")
+
 if __name__ == '__main__':
     test_main()
 

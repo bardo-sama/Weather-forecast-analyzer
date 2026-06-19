@@ -34,13 +34,22 @@ class City:
         else:
             self.forecasts.append(forecast)
             return True
-
-    def to_dict(self):
+    def to_min_dict(self):
         return {
             'name': self.name,
             'latitude': self.latitude,
-            'longitude': self.longitude
+            'longitude': self.longitude,
+            'country_code': self.country_code,
+            'timezone': self.timezone
+        }
+
+    def to_dict(self):
+
+        return  {
+            'name': self.name,
+            'latitude': self.latitude,
+            'longitude': self.longitude,
             'country_code': self.country_code,
             'timezone': self.timezone,
             'forecasts': [forecast.to_dict() for forecast in self.forecasts]
-        }
+            }
