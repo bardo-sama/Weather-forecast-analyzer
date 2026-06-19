@@ -21,9 +21,10 @@ def test_main():
     if test_parse_forecast is not False and not test_parse_forecast.empty:
 
         zaporizhzhia_forecast_data = add_forecast_obj(test_parse_forecast)
-        zaporizhzhia.add_forecasts(zaporizhzhia_forecast_data)
+        zaporizhzhia.add_forecast(zaporizhzhia_forecast_data)
 
     zaporizhzhia.show_city()
+    print(repr(zaporizhzhia))
     one = zaporizhzhia.forecasts[0]
     one.show_summary()
 
