@@ -9,6 +9,10 @@ class City:
             self.forecasts = []
         else:
             self.forecasts = list(forecasts)
+
+    def __repr__(self):
+        return f"\nname: {self.name!r}\n timezone: {self.timezone!r}\t({self.country_code!r})"
+
     def show_city(self):
 
         print('-' * 18)
@@ -24,6 +28,7 @@ class City:
         print('-' * 18)
 
     def add_forecast(self, forecast):
+
         if not forecast:
             return False
         else:
