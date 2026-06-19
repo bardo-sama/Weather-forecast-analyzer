@@ -19,9 +19,9 @@ def parse_forecast(forecast, city):
     forecast_df['date'] = forecast_df['datetime'].dt.strftime("%Y-%m-%d")
     forecast_df['hour'] = forecast_df['datetime'].dt.hour
     forecast_df['datetime'] = forecast_df['datetime'].dt.strftime("%Y-%m-%d T%H:%M")
-    forecast_df['request_t'] = request_time
+    forecast_df['collected_date'] = request_time
 
-    front_columns = ['name', 'latitude', 'longitude', 'request_t', 'datetime', 'date', 'hour']
+    front_columns = ['name', 'latitude', 'longitude', 'collected_date', 'datetime', 'date', 'hour']
 
     other_columns = [column for column in forecast_df.columns
                      if column not in front_columns]
