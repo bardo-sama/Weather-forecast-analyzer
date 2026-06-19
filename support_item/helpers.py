@@ -10,6 +10,8 @@ def get_geonames(city_name):
     ----------------------------------
     Перевірка коректності назви міста.
     """
+    city_name = city_name.strip().title()
+
     if city_name == 'Zaporizhzhia':
         return 'Zaporizhzhya'
     elif city_name == 'Mykolayiv':

@@ -28,13 +28,13 @@ def fetch_json(session, url, params):
         return None
 
     else:
-        print("\nThe function has successfully.")
+        print("The function has successfully.")
         print(f"URL: {response.url}")
 
         if response.from_cache:
-            print(f"Response from cache.\n")
+            print(f"Response from cache.")
         else:
-            print('\n')
+            print('')
 
         return response.json()
 

@@ -17,10 +17,15 @@ def test_main():
     # Чистимо отримані дані
     test_parse_forecast = parse_forecast(zaporizhzhia_forecast, zaporizhzhia)
     # Створ. об'єкт класу - Forecast
-    zaporizhzhia_forecast_data = add_forecast_obj(test_parse_forecast)
 
-    zaporizhzhia.add_forecast(zaporizhzhia_forecast_data)
+    if test_parse_forecast is not False and not test_parse_forecast.empty:
+
+        zaporizhzhia_forecast_data = add_forecast_obj(test_parse_forecast)
+        zaporizhzhia.add_forecasts(zaporizhzhia_forecast_data)
+
     zaporizhzhia.show_city()
+    one = zaporizhzhia.forecasts[0]
+    one.show_summary()
 
 if __name__ == '__main__':
     test_main()

@@ -27,7 +27,7 @@ class City:
             print('Прогноз: дані відсутні')
         print('-' * 18)
 
-    def add_forecast(self, forecast):
+    def add_forecasts(self, forecast):
 
         if not forecast:
             return False
@@ -35,9 +35,12 @@ class City:
             self.forecasts.append(forecast)
             return True
 
-    def to_small_dict(self):
+    def to_dict(self):
         return {
             'name': self.name,
             'latitude': self.latitude,
             'longitude': self.longitude
+            'country_code': self.country_code,
+            'timezone': self.timezone,
+            'forecasts': [forecast.to_dict() for forecast in self.forecasts]
         }
