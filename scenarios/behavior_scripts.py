@@ -9,16 +9,30 @@ def create_city_class(city_name, country_code):
 
     # Робимо запит міста
     request = fetch_city(city_name, country_code)
+
     # Чистимо дані міста
     city = city_parser(request)
+
+    if city is False:
+        print(f'City not found: {city} ({country_code})')
+        return None
+
     # Створ. об'єкт класу - City
     city = add_city_obj(city)
+
     # Робимо запит на прогноз погоди
     forecast = fetch_forecast(city)
+
     # Чистимо отримані дані
     forecast = parse_forecast(forecast, city)
+
+    if forecast is False:
+        print(f"Forecast data is empty")
+        return city
+
     # Створ. об'єкт класу - Forecast
     forecast_data = add_forecast_obj(forecast)
+
     # Додаємо прогноз до міста
     city.add_forecast(forecast_data)
 

@@ -1,5 +1,5 @@
 class City:
-    def __init__(self, name, latitude, longitude, country_code=None, timezone=None, forecasts=None):
+    def __init__(self, name, latitude, longitude, country_code=None, timezone=None, forecasts=None, observations=None):
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
@@ -9,6 +9,10 @@ class City:
             self.forecasts = []
         else:
             self.forecasts = list(forecasts)
+        if observations is None:
+            self.observations = []
+        else:
+            self.observations = list(observations)
 
     def __repr__(self):
         return f"\nname: {self.name!r}\ntimezone: {self.timezone!r}\t({self.country_code!r})"
@@ -28,12 +32,12 @@ class City:
         print('-' * 21)
 
     def add_forecast(self, forecast):
-
         if forecast is None:
             return False
         else:
             self.forecasts.append(forecast)
             return True
+
     def to_min_dict(self):
         return {
             'name': self.name,

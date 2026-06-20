@@ -26,8 +26,8 @@ def return_right_name(name):
     elif name == 'Mykolayiv':
         name = 'Mykolaiv'
         return name
-
-    return name.strip().title()
+    else:
+        return name.strip().title()
 
 def pretty_date(date, key):
 
