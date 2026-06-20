@@ -1,8 +1,6 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from models.city import City
 from models.forecast import Forecast
-
-
 
 def get_geonames(city_name):
     """
@@ -31,17 +29,15 @@ def return_right_name(name):
 
     return name.strip().title()
 
-def pretty_date(date):
+def pretty_date(date, key):
 
-    raw_date = date.get('requested_time', None)
+    raw_date = date.get(key, None)
     if raw_date is None:
         return False
     dt = datetime.fromisoformat(raw_date)
 
     dt_clean = dt.strftime("%Y-%m-%d")
     return dt_clean
-
-
 
 def add_city_obj(city_data):
 
@@ -53,6 +49,19 @@ def add_forecast_obj(data):
     return Forecast(data.iloc[0]['name'], 'open_meteo', data.iloc[0]['latitude'],
                     data.iloc[0]['longitude'], data.iloc[0]['collected_date'],
                     data.iloc[0]['datetime'], data.iloc[-1]['datetime'], data[['date', 'hour', 'temperature_2m']])
+
+def is_observation_available(forecast, delay_day=2):
+    """Перевірка валідности запиту на фактичну погоду"""
+
+    # Змінна з поточною датою
+    today = datetime.now().date()
+    # Змінна з датою доступу
+    available_until = today - timedelta(days=delay_day)
+    # Змінна з атрибутом класу Forecast
+    period_end = datetime.strptime(forecast.period_end, "%Y-%m-%dT%H:%M").date()
+
+    return period_end <= available_until
+
 
 
 

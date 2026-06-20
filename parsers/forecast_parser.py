@@ -5,10 +5,10 @@ def parse_forecast(forecast, city):
 
     weather = forecast.get('data', {}).get('hourly', [])
 
-    if not weather:
+    if not weather or not city:
         return False
 
-    request_time = pretty_date(forecast)
+    request_time = pretty_date(forecast, 'requested_time')
     forecast_df = pd.DataFrame(weather)
 
     forecast_df['name'] = city.name
@@ -18,7 +18,7 @@ def parse_forecast(forecast, city):
     forecast_df['datetime'] = pd.to_datetime(forecast_df['time'])
     forecast_df['date'] = forecast_df['datetime'].dt.strftime("%Y-%m-%d")
     forecast_df['hour'] = forecast_df['datetime'].dt.hour
-    forecast_df['datetime'] = forecast_df['datetime'].dt.strftime("%Y-%m-%d T%H:%M")
+    forecast_df['datetime'] = forecast_df['datetime'].dt.strftime("%Y-%m-%dT%H:%M")
     forecast_df['collected_date'] = request_time
 
     front_columns = ['name', 'latitude', 'longitude', 'collected_date', 'datetime', 'date', 'hour']

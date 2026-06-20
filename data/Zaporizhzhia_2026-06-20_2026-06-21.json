@@ -1,0 +1,264 @@
+{
+    "name": "Zaporizhzhia",
+    "latitude": 47.85167,
+    "longitude": 35.11714,
+    "country_code": "UA",
+    "timezone": "Europe/Kyiv",
+    "forecasts": [
+        {
+            "city_name": "Zaporizhzhia",
+            "source": "open_meteo",
+            "coordinates": {
+                "latitude": 47.85167,
+                "longitude": 35.11714
+            },
+            "collected_date": "2026-06-20",
+            "period": {
+                "start_date": "2026-06-20T00:00",
+                "end_date": "2026-06-21T23:00"
+            },
+            "weather_data": [
+                {
+                    "date": "2026-06-20",
+                    "hour": 0,
+                    "temperature_2m": 17.5
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 1,
+                    "temperature_2m": 17.0
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 2,
+                    "temperature_2m": 16.6
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 3,
+                    "temperature_2m": 16.7
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 4,
+                    "temperature_2m": 18.2
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 5,
+                    "temperature_2m": 20.6
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 6,
+                    "temperature_2m": 23.1
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 7,
+                    "temperature_2m": 24.8
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 8,
+                    "temperature_2m": 25.5
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 9,
+                    "temperature_2m": 26.4
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 10,
+                    "temperature_2m": 26.4
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 11,
+                    "temperature_2m": 27.3
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 12,
+                    "temperature_2m": 27.5
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 13,
+                    "temperature_2m": 27.5
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 14,
+                    "temperature_2m": 27.6
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 15,
+                    "temperature_2m": 27.4
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 16,
+                    "temperature_2m": 26.6
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 17,
+                    "temperature_2m": 25.5
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 18,
+                    "temperature_2m": 24.1
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 19,
+                    "temperature_2m": 23.3
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 20,
+                    "temperature_2m": 22.4
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 21,
+                    "temperature_2m": 21.4
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 22,
+                    "temperature_2m": 20.9
+                },
+                {
+                    "date": "2026-06-20",
+                    "hour": 23,
+                    "temperature_2m": 20.7
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 0,
+                    "temperature_2m": 20.2
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 1,
+                    "temperature_2m": 19.7
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 2,
+                    "temperature_2m": 19.5
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 3,
+                    "temperature_2m": 19.6
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 4,
+                    "temperature_2m": 20.2
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 5,
+                    "temperature_2m": 21.7
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 6,
+                    "temperature_2m": 23.3
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 7,
+                    "temperature_2m": 24.6
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 8,
+                    "temperature_2m": 25.3
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 9,
+                    "temperature_2m": 26.0
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 10,
+                    "temperature_2m": 25.9
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 11,
+                    "temperature_2m": 26.6
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 12,
+                    "temperature_2m": 27.2
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 13,
+                    "temperature_2m": 26.9
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 14,
+                    "temperature_2m": 26.8
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 15,
+                    "temperature_2m": 26.6
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 16,
+                    "temperature_2m": 26.1
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 17,
+                    "temperature_2m": 25.3
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 18,
+                    "temperature_2m": 24.0
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 19,
+                    "temperature_2m": 22.8
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 20,
+                    "temperature_2m": 21.8
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 21,
+                    "temperature_2m": 21.1
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 22,
+                    "temperature_2m": 20.6
+                },
+                {
+                    "date": "2026-06-21",
+                    "hour": 23,
+                    "temperature_2m": 20.0
+                }
+            ]
+        }
+    ]
+}

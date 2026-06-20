@@ -3,6 +3,7 @@ from api_clients.open_meteo_forecast import fetch_forecast
 from parsers.city_parser import city_parser
 from parsers.forecast_parser import parse_forecast
 from support_item.helpers import add_city_obj, add_forecast_obj
+from storage.save_to_json import save_city_to_json
 
 def test_main():
 
@@ -24,14 +25,9 @@ def test_main():
         zaporizhzhia.add_forecast(zaporizhzhia_forecast_data)
 
     zaporizhzhia.show_city()
-    print(repr(zaporizhzhia))
-    one = zaporizhzhia.forecasts[0]
-    one.show_summary()
+    zp_forecast = zaporizhzhia.forecasts[0]
+    zp_forecast.show_summary()
 
-    to_dict_test = zaporizhzhia.to_dict()
-
-    for key, value in to_dict_test.items():
-        print(f"{key}: {value}")
 
 if __name__ == '__main__':
     test_main()
