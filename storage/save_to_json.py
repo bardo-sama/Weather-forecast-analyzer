@@ -9,6 +9,11 @@ def save_city_to_json(data):
         return
 
     name = data.get('name')
+
+    if not data.get('forecasts'):
+        print("Forecasts are empty.")
+        return
+
     start_period = data["forecasts"][0]["period"]
     end_period = data["forecasts"][-1]["period"]
 
