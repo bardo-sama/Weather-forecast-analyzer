@@ -18,11 +18,9 @@ def test_main():
     # Чистимо отримані дані
     test_parse_forecast = parse_forecast(zaporizhzhia_forecast, zaporizhzhia)
     # Створ. об'єкт класу - Forecast
-
-    if test_parse_forecast is not False and not test_parse_forecast.empty:
-
-        zaporizhzhia_forecast_data = add_forecast_obj(test_parse_forecast)
-        zaporizhzhia.add_forecast(zaporizhzhia_forecast_data)
+    zaporizhzhia_forecast_data = add_forecast_obj(test_parse_forecast)
+    # Додаємо прогноз до міста
+    zaporizhzhia.add_forecast(zaporizhzhia_forecast_data)
 
     zaporizhzhia.show_city()
     zp_forecast = zaporizhzhia.forecasts[0]

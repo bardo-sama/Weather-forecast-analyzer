@@ -14,7 +14,7 @@ class Forecast:
         print(f'Джерело: {self.source}')
         print(f'Дата збору даних: {self.collected_date}')
         print(f'Період:\n\t{self.period_start}\n\t{self.period_end}')
-        print(f"Кількість записів: {len(self.weather_data['date'])} записи.")
+        print(f"Кількість записів: {len(self.weather_data['date'])} записів.")
 
     def to_dict(self):
 

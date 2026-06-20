@@ -3,9 +3,12 @@ from support_item.helpers import pretty_date
 
 def parse_forecast(forecast, city):
 
+    if not city or city is None:
+        return False
+
     weather = forecast.get('data', {}).get('hourly', [])
 
-    if not weather or not city:
+    if not weather or weather is None:
         return False
 
     request_time = pretty_date(forecast, 'requested_time')

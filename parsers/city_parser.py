@@ -1,7 +1,8 @@
 from support_item.helpers import return_right_name
 
 def city_parser(city):
-
+    if not city or city is None:
+        return False
     current_data = city[0]
 
     get_valid_name = current_data['name']
