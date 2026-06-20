@@ -10,12 +10,12 @@ class Forecast:
         self.weather_data = weather_data
 
     def show_summary(self):
-
+        print('-' * 21)
         print(f'Джерело: {self.source}')
         print(f'Дата збору даних: {self.collected_date}')
         print(f'Період:\n\t{self.period_start}\n\t{self.period_end}')
         print(f"Кількість записів: {len(self.weather_data['date'])} записів.")
-
+        print('-' * 21)
     def to_dict(self):
 
         obj_datafile = {

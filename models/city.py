@@ -15,7 +15,7 @@ class City:
 
     def show_city(self):
 
-        print('-' * 18)
+        print('-' * 21)
         print(f'Назва міста: {self.name}')
         print(f'Координати:')
         print(f'\tШирота: {self.latitude}')
@@ -25,7 +25,7 @@ class City:
             print('Прогноз: доступний')
         else:
             print('Прогноз: дані відсутні')
-        print('-' * 18)
+        print('-' * 21)
 
     def add_forecast(self, forecast):
 
