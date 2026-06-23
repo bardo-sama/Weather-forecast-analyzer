@@ -6,9 +6,9 @@ def parse_forecast(forecast, city):
     if not city or city is None:
         return False
 
-    weather = forecast.get('data', {}).get('hourly', [])
+    weather = forecast.get('data', {}).get('hourly', None)
 
-    if not weather or weather is None:
+    if weather is None:
         return False
 
     request_time = pretty_date(forecast, 'requested_time')

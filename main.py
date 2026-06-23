@@ -6,4 +6,3 @@ if __name__ == '__main__':
     lviv_weather = lviv.forecasts[0]
 
     observation_lviv = fetch_observation(lviv, lviv_weather)
-    print(type(observation_lviv))
