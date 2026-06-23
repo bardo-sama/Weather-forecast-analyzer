@@ -11,8 +11,8 @@ def fetch_observation(city, forecast):
     start_date = forecast.period_start
     end_date = forecast.period_end
     check_date = is_observation_available(forecast)
-    if end_date is False:
-        print("Uncorrected observations dates.")
+    if check_date is False:
+        print("Uncorrected observations date.")
         return False
 
     params = {

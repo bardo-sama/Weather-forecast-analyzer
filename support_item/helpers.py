@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from models.city import City
 from models.forecast import Forecast
+from models.observation import Observation
 
 def get_geonames(city_name):
     """
@@ -49,6 +50,12 @@ def add_forecast_obj(data):
     return Forecast(data.iloc[0]['name'], 'open_meteo', data.iloc[0]['latitude'],
                     data.iloc[0]['longitude'], data.iloc[0]['collected_date'],
                     data.iloc[0]['datetime'], data.iloc[-1]['datetime'], data[['date', 'hour', 'temperature_2m']])
+
+def add_observation_obj(data):
+
+    return Observation(data.iloc[0]['name'], 'open_meteo', data.iloc[0]['latitude'],
+                       data.iloc[0]['longitude'],data.iloc[0]['datetime'],
+                       data.iloc[-1]['datetime'], data[['date', 'hour', 'temperature_2m']])
 
 def is_observation_available(forecast, delay_day=2):
     """Перевірка валідности запиту на фактичну погоду"""
