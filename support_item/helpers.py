@@ -45,11 +45,12 @@ def add_city_obj(city_data):
     return City(city_data.get('name'), city_data.get('latitude'), city_data.get('longitude'),
                 city_data.get('country_code'), city_data.get('timezone'))
 
+
 def add_forecast_obj(data):
 
-    return Forecast(data.iloc[0]['name'], 'open_meteo', data.iloc[0]['latitude'],
-                    data.iloc[0]['longitude'], data.iloc[0]['collected_date'],
-                    data.iloc[0]['datetime'], data.iloc[-1]['datetime'], data[['date', 'hour', 'temperature_2m']])
+    return Forecast(data.iloc[0]['name'], data.iloc[0]['source'], data.iloc[0]['latitude'],
+                    data.iloc[0]['longitude'], data.iloc[0]['collected_date'], data.iloc[0]['date'],
+                    data[['date', 'hour', 'temperature_2m']])
 
 def add_observation_obj(data):
 

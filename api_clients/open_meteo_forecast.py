@@ -11,7 +11,7 @@ def fetch_forecast(city):
         'latitude': city.latitude,
         'longitude': city.longitude,
         'hourly': PARAMS,
-        "forecast_days": 2  # max = 16 days
+        "forecast_days": 7  # max = 16 days
     }
     # Час початку запиту
     requests_time = datetime.now(timezone.utc)
@@ -24,6 +24,7 @@ def fetch_forecast(city):
 
     return {
         'requested_time': requests_time.isoformat(),
+        'source': 'open_meteo',
         'data': result
     }
 
