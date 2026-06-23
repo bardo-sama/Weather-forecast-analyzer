@@ -20,8 +20,10 @@ class Forecast:
         obj_datafile = {
             'city_name': self.city_name,
             'source': self.source,
-            'latitude': self.latitude,
-            'longitude': self.longitude,
+            "coordinates": {
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+            },
             'collected_date': self.collected_date,
             'target_date': self.target_date,
             'weather_data': self.weather_data.to_dict('records')

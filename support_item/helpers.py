@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 from models.city import City
 from models.forecast import Forecast
 from models.observation import Observation
+from settings import BASE_DIR
+from pathlib import Path
 
 def get_geonames(city_name):
     """
@@ -50,13 +52,13 @@ def add_forecast_obj(data):
 
     return Forecast(data.iloc[0]['name'], data.iloc[0]['source'], data.iloc[0]['latitude'],
                     data.iloc[0]['longitude'], data.iloc[0]['collected_date'], data.iloc[0]['date'],
-                    data[['date', 'hour', 'temperature_2m']])
+                    data[['datetime', 'date', 'hour', 'temperature_2m']])
 
 def add_observation_obj(data):
-
+    """Створення класу з факт. погодними даними """
     return Observation(data.iloc[0]['name'], 'open_meteo', data.iloc[0]['latitude'],
                        data.iloc[0]['longitude'],data.iloc[0]['datetime'],
-                       data.iloc[-1]['datetime'], data[['date', 'hour', 'temperature_2m']])
+                       data.iloc[-1]['datetime'], data[['datetime', 'date', 'hour', 'temperature_2m']])
 
 def is_observation_available(forecast, delay_day=2):
     """Перевірка валідности запиту на фактичну погоду"""
@@ -66,9 +68,18 @@ def is_observation_available(forecast, delay_day=2):
     # Змінна з датою доступу
     available_until = today - timedelta(days=delay_day)
     # Змінна з атрибутом класу Forecast
-    period_end = datetime.strptime(forecast.period_end, "%Y-%m-%dT%H:%M").date()
+    target_date = datetime.strptime(forecast.target_date, "%Y-%m-%dT%H:%M").date()
 
-    return period_end <= available_until
+    return target_date <= available_until
+
+def name_for_json(data):
+    """Створення шаблону директорії"""
+    city_name = data['name']
+    source = data['forecasts'][0]['source']
+    collected_date = data['forecasts'][0]['collected_date']
+
+    return Path("data") / "forecasts" / city_name / source / f"{collected_date}.json"
+
 
 
 
