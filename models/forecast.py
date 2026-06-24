@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Forecast:
     def __init__(self, city_name, source, latitude, longitude, collected_date, target_date, weather_data):
         self.city_name = city_name
@@ -13,10 +15,9 @@ class Forecast:
         print(f'Джерело: {self.source}')
         print(f'Дата збору даних: {self.collected_date}')
         print(f'Прогноз за датою: {self.target_date}')
-        print(f"Кількість записів: {len(self.weather_data['date'])} записів.")
         print('-' * 21)
-    def to_dict(self):
 
+    def to_dict(self):
         obj_datafile = {
             'city_name': self.city_name,
             'source': self.source,
@@ -26,7 +27,14 @@ class Forecast:
             },
             'collected_date': self.collected_date,
             'target_date': self.target_date,
+            'lead_days': self.lead_days,
             'weather_data': self.weather_data.to_dict('records')
         }
-
         return obj_datafile
+
+    @property
+    def lead_days(self):
+        collected = datetime.strptime(self.collected_date, "%Y-%m-%d").date()
+        target = datetime.strptime(self.target_date, "%Y-%m-%d").date()
+
+        return (collected - target).days

@@ -3,7 +3,7 @@ from datetime import timedelta, datetime, timezone
 from settings import FORECAST_CACHE, REQUEST_WEATHER_FORECAST_URL, PARAMS
 from api_clients.get_request_api import fetch_json
 
-session_forecast = requests_cache.CachedSession(FORECAST_CACHE, expire_after=timedelta(hours=24))
+session_forecast = requests_cache.CachedSession(FORECAST_CACHE, expire_after=timedelta(hours=12))
 
 def fetch_forecast(city):
     # Параметри запиту

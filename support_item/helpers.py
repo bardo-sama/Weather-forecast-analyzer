@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from models.city import City
 from models.forecast import Forecast
 from models.observation import Observation
-from settings import BASE_DIR
+
 from pathlib import Path
 
 def get_geonames(city_name):
@@ -44,21 +44,36 @@ def pretty_date(date, key):
 
 def add_city_obj(city_data):
 
-    return City(city_data.get('name'), city_data.get('latitude'), city_data.get('longitude'),
-                city_data.get('country_code'), city_data.get('timezone'))
+    return City(
+        city_data.get('name'),
+        city_data.get('latitude'),
+        city_data.get('longitude'),
+        city_data.get('country_code'),
+        city_data.get('timezone'))
 
 
 def add_forecast_obj(data):
 
-    return Forecast(data.iloc[0]['name'], data.iloc[0]['source'], data.iloc[0]['latitude'],
-                    data.iloc[0]['longitude'], data.iloc[0]['collected_date'], data.iloc[0]['date'],
-                    data[['datetime', 'date', 'hour', 'temperature_2m']])
+    return Forecast(
+        data.iloc[0]['name'],
+        data.iloc[0]['source'],
+        data.iloc[0]['latitude'],
+        data.iloc[0]['longitude'],
+        data.iloc[0]['collected_date'],
+        data.iloc[0]['date'],
+        data[['datetime', 'date', 'hour', 'temperature_2m']])
 
 def add_observation_obj(data):
     """Створення класу з факт. погодними даними """
-    return Observation(data.iloc[0]['name'], 'open_meteo', data.iloc[0]['latitude'],
-                       data.iloc[0]['longitude'],data.iloc[0]['datetime'],
-                       data.iloc[-1]['datetime'], data[['datetime', 'date', 'hour', 'temperature_2m']])
+
+    return Observation(
+        data.iloc[0]["name"],
+        data.iloc[0]["source"],
+        data.iloc[0]["latitude"],
+        data.iloc[0]["longitude"],
+        data.iloc[0]["date"],
+        data[["datetime", "date", "hour", "temperature_2m"]]
+    )
 
 def is_observation_available(forecast, delay_day=2):
     """Перевірка валідности запиту на фактичну погоду"""
@@ -74,6 +89,7 @@ def is_observation_available(forecast, delay_day=2):
 
 def name_for_json(data):
     """Створення шаблону директорії"""
+
     city_name = data['name']
     source = data['forecasts'][0]['source']
     collected_date = data['forecasts'][0]['collected_date']
