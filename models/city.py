@@ -1,3 +1,5 @@
+from models.forecast import Forecast
+
 class City:
     def __init__(self, name, latitude, longitude, country_code=None, timezone=None, forecasts=None, observations=None):
         self.name = name
@@ -57,3 +59,18 @@ class City:
             'timezone': self.timezone,
             'forecasts': [forecast.to_dict() for forecast in self.forecasts]
             }
+
+    @classmethod
+    def from_dict(cls, data):
+
+        forecasts = [Forecast.from_dict(forecast_data)
+                    for forecast_data in data.get('forecasts', [])]
+
+        return cls(
+            name=data.get('name'),
+            latitude=data.get('latitude'),
+            longitude=data.get('longitude'),
+            country_code=data.get('country_code'),
+            timezone=data.get('timezone'),
+            forecasts=forecasts,
+        )

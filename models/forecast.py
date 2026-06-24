@@ -1,4 +1,5 @@
 from datetime import datetime
+import pandas as pd
 
 class Forecast:
     def __init__(self, city_name, source, latitude, longitude, collected_date, target_date, weather_data):
@@ -17,6 +18,13 @@ class Forecast:
         print(f'Прогноз за датою: {self.target_date}')
         print('-' * 21)
 
+    @property
+    def lead_days(self):
+        collected = datetime.strptime(self.collected_date, "%Y-%m-%d").date()
+        target = datetime.strptime(self.target_date, "%Y-%m-%d").date()
+
+        return (target - collected).days
+
     def to_dict(self):
         obj_datafile = {
             'city_name': self.city_name,
@@ -32,9 +40,20 @@ class Forecast:
         }
         return obj_datafile
 
-    @property
-    def lead_days(self):
-        collected = datetime.strptime(self.collected_date, "%Y-%m-%d").date()
-        target = datetime.strptime(self.target_date, "%Y-%m-%d").date()
+    @classmethod
+    def from_dict(cls, data):
 
-        return (collected - target).days
+        coordinates = data.get('coordinates', {})
+
+        weather_data = pd.DataFrame(data.get('weather_data', []))
+
+        return cls(
+            city_name=data.get('city_name'),
+            source=data.get('source'),
+            latitude=coordinates.get('latitude'),
+            longitude=coordinates.get('longitude'),
+            collected_date=data.get('collected_date'),
+            target_date=data.get('target_date'),
+            weather_data=weather_data
+        )
+

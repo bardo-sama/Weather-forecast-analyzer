@@ -83,7 +83,7 @@ def is_observation_available(forecast, delay_day=2):
     # Змінна з датою доступу
     available_until = today - timedelta(days=delay_day)
     # Змінна з атрибутом класу Forecast
-    target_date = datetime.strptime(forecast.target_date, "%Y-%m-%dT%H:%M").date()
+    target_date = datetime.strptime(forecast.target_date, "%Y-%m-%d").date()
 
     return target_date <= available_until
 
