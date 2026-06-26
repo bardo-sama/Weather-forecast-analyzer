@@ -17,7 +17,9 @@ class City:
             self.observations = list(observations)
 
     def __repr__(self):
-        return f"\nname: {self.name!r}\ntimezone: {self.timezone!r}\t({self.country_code!r})"
+        return (f"class: City\n"
+                f"name: {self.name!r}\n"
+                f"timezone: {self.timezone!r}\t({self.country_code!r})")
 
     def show_city(self):
 
@@ -40,6 +42,10 @@ class City:
             self.forecasts.append(forecast)
             return True
 
+    def add_forecasts(self, forecasts):
+        for forecast in forecasts:
+            self.add_forecast(forecast)
+
     def to_min_dict(self):
         return {
             'name': self.name,
@@ -60,8 +66,13 @@ class City:
             'forecasts': [forecast.to_dict() for forecast in self.forecasts]
             }
 
+
+
     @classmethod
     def from_dict(cls, data):
+
+        if not isinstance(data, dict):
+            return None
 
         forecasts = [Forecast.from_dict(forecast_data)
                     for forecast_data in data.get('forecasts', [])]

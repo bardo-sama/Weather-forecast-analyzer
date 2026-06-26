@@ -1,7 +1,6 @@
 from scenarios.behavior_scripts import create_city_class
-from storage.load_json import load_json
-from models.city import City
-
+from storage.load_json import load_json, load_city_forecast_history
+from support_item.forecasts_status import get_forecasts_ready_for_observation
 
 def test_forecasts_default_obj():
     city_list = ['zaporizhzhia', 'dnipro', 'kyiv', 'lviv']
@@ -12,13 +11,13 @@ def test_forecasts_default_obj():
 
 if __name__ == '__main__':
 
-    filename = "data/forecasts/zaporizhzhia/open_meteo/2026-06-23.json"
-
-    data = load_json(filename)
-
-    city = City.from_dict(data)
+    city = load_city_forecast_history('zaporizhzhia', 'open_meteo')
 
     city.show_city()
 
-    for forecast in city.forecasts:
-        forecast.show_summary()
+    ready = get_forecasts_ready_for_observation(city)
+    print('\n')
+    print('-' * 50)
+    print('\n')
+    for i in ready:
+        i.show_summary()

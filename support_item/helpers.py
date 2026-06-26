@@ -75,18 +75,6 @@ def add_observation_obj(data):
         data[["datetime", "date", "hour", "temperature_2m"]]
     )
 
-def is_observation_available(forecast, delay_day=2):
-    """Перевірка валідности запиту на фактичну погоду"""
-
-    # Змінна з поточною датою
-    today = datetime.now().date()
-    # Змінна з датою доступу
-    available_until = today - timedelta(days=delay_day)
-    # Змінна з атрибутом класу Forecast
-    target_date = datetime.strptime(forecast.target_date, "%Y-%m-%d").date()
-
-    return target_date <= available_until
-
 def name_for_json(data):
     """Створення шаблону директорії"""
 

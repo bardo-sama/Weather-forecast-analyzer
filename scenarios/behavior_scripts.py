@@ -30,7 +30,9 @@ def create_city_class(city_name, country_code):
         print(f"Forecast data is empty")
         return city
 
+    # Розділяємо по днях
     forecasts = split_forecast_by_date(forecast)
+
     # Створ. об'єкти класу - Forecast та додаємо прогноз до міста
     for forecast in forecasts:
         forecasts_obj = add_forecast_obj(forecast)

@@ -11,6 +11,10 @@ class Forecast:
         self.target_date = target_date
         self.weather_data = weather_data
 
+    def __repr__(self):
+        return (f'Collected date: {self.collected_date}\n'
+                f'Target date: {self.target_date}\n')
+
     def show_summary(self):
         print('-' * 21)
         print(f'Джерело: {self.source}')
@@ -42,6 +46,9 @@ class Forecast:
 
     @classmethod
     def from_dict(cls, data):
+
+        if not isinstance(data, dict):
+            return None
 
         coordinates = data.get('coordinates', {})
 
