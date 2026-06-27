@@ -1,6 +1,8 @@
-from scenarios.behavior_scripts import create_city_class
+from behavior_scripts.create_city_class import create_city_class
+from behavior_scripts.create_observation_class import create_observation_class
 from storage.load_json import load_json, load_city_forecast_history
-from support_item.forecasts_status import get_forecasts_ready_for_observation, get_preparation_to_observation_requests
+from support_item.forecasts_status import get_pending_forecasts
+
 
 
 def test_forecasts_default_obj():
@@ -11,4 +13,16 @@ def test_forecasts_default_obj():
         cities.append(current_data)
 
 if __name__ == '__main__':
-    pass
+    test_forecasts_default_obj()
+
+    zp = load_city_forecast_history('zaporizhzhia', 'open_meteo')
+    dnipro = load_city_forecast_history('dnipro', 'open_meteo')
+    kyiv = load_city_forecast_history('kyiv', 'open_meteo')
+    lviv = load_city_forecast_history('lviv', 'open_meteo')
+
+    zp_city = create_observation_class(zp)
+    dnipro_city = create_observation_class(dnipro)
+    kyiv_city = create_observation_class(kyiv)
+    lviv_city = create_observation_class(lviv)
+
+    zp_city = get_pending_forecasts(zp_city)

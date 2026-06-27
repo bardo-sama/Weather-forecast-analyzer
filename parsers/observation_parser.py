@@ -5,7 +5,8 @@ def parse_observation(observation, city):
     if not city or city is None:
         return False
 
-    weather = observation.get('hourly', None)
+    weather = observation.get('data', {}).get('hourly', None)
+    source = observation.get('source')
 
     if weather is None:
         return False
@@ -13,6 +14,7 @@ def parse_observation(observation, city):
     observation_df = pd.DataFrame(weather)
 
     observation_df['name'] = city.name
+    observation_df['source'] = source
     observation_df['latitude'] = city.latitude
     observation_df['longitude'] = city.longitude
 
@@ -30,3 +32,12 @@ def parse_observation(observation, city):
     observation_df = observation_df.drop(columns=['time'])
 
     return observation_df
+
+def split_observation_by_date(observation_df):
+
+    observations = []
+
+    for target_date, day_df in observation_df.groupby('date'):
+        observations.append(day_df)
+
+    return observations

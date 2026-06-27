@@ -1,3 +1,5 @@
+import pandas as pd
+
 class Observation:
     def __init__(self, city_name, source, latitude, longitude, target_date, weather_data):
         self.city_name = city_name
@@ -24,3 +26,21 @@ class Observation:
             'target_date': self.target_date,
             'weather_data': self.weather_data.to_dict('records')
         }
+
+    @classmethod
+    def from_dict(cls, data):
+
+        if not isinstance(data, dict):
+            return None
+
+        coordinates = data.get('coordinates', {})
+
+        weather_data = pd.DataFrame(data.get('weather_data', []))
+
+        return cls(
+            city_name=data.get('city_name'),
+            source=data.get('source'),
+            latitude=coordinates.get('latitude'),
+            longitude=coordinates.get('longitude'),
+            target_date=data.get('target_date'),
+            weather_data=weather_data)

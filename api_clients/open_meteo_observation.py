@@ -8,14 +8,14 @@ session_observation = requests_cache.CachedSession(OBSERVATION_CACHE, expire_aft
 
 def fetch_observation(city):
 
-    date = get_preparation_to_observation_requests(city)
+    dates = get_preparation_to_observation_requests(city)
 
-    if date is None:
-        print("Uncorrected observations date.")
+    if not dates:
+        print("No available observation dates.")
         return False
 
-    start_date = date[0]
-    end_date = date[-1]
+    start_date = dates[0]
+    end_date = dates[-1]
 
     params = {
         "latitude": city.latitude,
@@ -27,4 +27,10 @@ def fetch_observation(city):
 
     result = fetch_json(session=session_observation, url=REQUEST_WEATHER_OBSERVATION_URL, params=params)
 
-    return result
+    if not result:
+        return {}
+
+    return {
+        'source': 'open_meteo',
+        'data': result
+    }

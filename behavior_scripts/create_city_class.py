@@ -10,6 +10,7 @@ def create_city_class(city_name, country_code):
     # Робимо запит міста
     request = fetch_city(city_name, country_code)
 
+
     # Чистимо дані міста
     city = city_parser(request)
 
