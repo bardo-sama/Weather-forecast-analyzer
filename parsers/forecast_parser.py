@@ -1,5 +1,5 @@
 import pandas as pd
-from support_item.helpers import pretty_date
+from support_item.others_items import pretty_date
 
 def parse_forecast(forecast, city):
 

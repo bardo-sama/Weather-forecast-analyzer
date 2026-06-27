@@ -23,7 +23,7 @@ def parse_observation(observation, city):
     observation_df['hour'] = observation_df['datetime'].dt.hour
     observation_df['datetime'] = observation_df['datetime'].dt.strftime("%Y-%m-%dT%H:%M")
 
-    front_columns = ['name', 'latitude', 'longitude', 'datetime', 'date', 'hour']
+    front_columns = ['name', 'source', 'latitude', 'longitude', 'datetime', 'date', 'hour']
 
     other_columns = [column for column in observation_df.columns
                      if column not in front_columns]

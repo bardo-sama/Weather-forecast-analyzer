@@ -37,7 +37,8 @@ def get_pending_forecasts(city):
             current_date = {'collected_date': forecast.collected_date,
                             'target_date': forecast.target_date}
             pending.append(current_date)
-
+    if not pending:
+        return []
     df = pd.DataFrame(pending)
     df = df.drop(columns='collected_date')
     df = df.drop_duplicates(subset=['target_date'])

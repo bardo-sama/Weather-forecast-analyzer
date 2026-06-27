@@ -1,7 +1,7 @@
 import requests_cache
 from settings import CITY_CACHE, REQUEST_NAME_URL
 from datetime import timedelta
-from support_item.helpers import get_geonames
+from support_item.others_items import get_geonames
 from api_clients.get_request_api import fetch_json
 
 session_name = requests_cache.CachedSession(CITY_CACHE, expire_after=timedelta(hours=1))

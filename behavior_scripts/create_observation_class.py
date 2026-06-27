@@ -2,7 +2,7 @@ from storage.load_json import load_city_forecast_history
 from support_item.forecasts_status import get_preparation_to_observation_requests, get_pending_forecasts
 from api_clients.open_meteo_observation import fetch_observation
 from parsers.observation_parser import parse_observation, split_observation_by_date
-from support_item.helpers import add_observation_obj
+from support_item.others_items import add_observation_obj
 
 def create_observation_class(city):
 

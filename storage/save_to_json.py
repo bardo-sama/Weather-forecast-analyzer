@@ -1,5 +1,5 @@
 import json
-from support_item.helpers import name_for_json
+from support_item.others_items import name_for_json
 
 def save_city_to_json(data):
     if not data or data is None:

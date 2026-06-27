@@ -2,7 +2,7 @@ from api_clients.open_meteo_city_name import fetch_city
 from api_clients.open_meteo_forecast import fetch_forecast
 from parsers.city_parser import city_parser
 from parsers.forecast_parser import parse_forecast, split_forecast_by_date
-from support_item.helpers import add_city_obj, add_forecast_obj
+from support_item.others_items import add_city_obj, add_forecast_obj
 from storage.save_to_json import save_city_to_json
 
 def create_city_class(city_name, country_code):
