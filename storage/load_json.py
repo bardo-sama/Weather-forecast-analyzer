@@ -9,11 +9,11 @@ def load_json(filename):
         with filename.open('r', encoding='utf-8') as file:
             data = json.load(file)
     except json.JSONDecodeError as error:
-        print(f"syntax error: {error}.")
-        return []
+        print(f"Syntax error: {error}.")
+        return None
     except FileNotFoundError:
         print('File not found.')
-        return []
+        return None
     else:
         return data
 

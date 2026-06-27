@@ -46,6 +46,18 @@ class City:
         for forecast in forecasts:
             self.add_forecast(forecast)
 
+    def add_observation(self, observation):
+        if observation is None:
+            return False
+        else:
+            self.observations.append(observation)
+            return True
+
+    def add_observations(self, observations):
+
+        for observation in observations:
+            self.add_observation(observation)
+
     def to_min_dict(self):
         return {
             'name': self.name,

@@ -2,18 +2,20 @@ import requests_cache
 from datetime import timedelta
 from settings import OBSERVATION_CACHE, REQUEST_WEATHER_OBSERVATION_URL, PARAMS
 from api_clients.get_request_api import fetch_json
-from support_item.helpers import is_observation_available
+from support_item.forecasts_status import get_preparation_to_observation_requests
 
 session_observation = requests_cache.CachedSession(OBSERVATION_CACHE, expire_after=timedelta(hours=24))
 
-def fetch_observation(city, forecast):
+def fetch_observation(city):
 
-    start_date = forecast.period_start
-    end_date = forecast.period_end
-    check_date = is_observation_available(forecast)
-    if check_date is False:
+    date = get_preparation_to_observation_requests(city)
+
+    if date is None:
         print("Uncorrected observations date.")
         return False
+
+    start_date = date[0]
+    end_date = date[-1]
 
     params = {
         "latitude": city.latitude,
