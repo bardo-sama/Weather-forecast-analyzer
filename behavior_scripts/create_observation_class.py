@@ -9,9 +9,8 @@ def create_observation_class(city):
     ready = get_preparation_to_observation_requests(city)
 
     if not ready:
-        pending_dates = get_pending_forecasts(city)
-        print('Pending dates.')
-        return pending_dates
+        print('Observations is`t ready, use "pending dates" func.')
+        return city
 
     print(f'Available period: {ready[0]} - {ready[-1]}')
 
