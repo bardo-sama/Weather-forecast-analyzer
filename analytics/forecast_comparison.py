@@ -35,12 +35,24 @@ def compare_forecast_with_observation(city):
     forecast_df.rename(columns={'temperature_2m': 'forecast_temp'}, inplace=True)
     observation_df.rename(columns={'temperature_2m':'observ_temp'}, inplace=True)
 
-
     compare_df = pd.merge(
         forecast_df,
         observation_df[['datetime', 'observ_temp']],
         on='datetime',
         how='left'
     )
+    compare_df['city'] = forecast.city_name
+    compare_df['source'] = forecast.source
+    compare_df['collected_date'] = forecast.collected_date
+    compare_df['target_date'] = forecast.target_date
+    compare_df['lead_days'] = forecast.lead_days
+
+    front_columns = ['city', 'source', 'collected_date', 'target_date', 'lead_days']
+
+    others_columns = [column for column in compare_df.columns
+                      if column not in front_columns]
+
+    compare_df = compare_df[front_columns + others_columns]
+
 
     return compare_df
