@@ -28,4 +28,6 @@ if __name__ == '__main__':
 
     test = compare_forecast_with_observation(zp_city)
     test.info()
-
+    print(test.tail(5))
+    df = test[['datetime', 'forecast_temp', 'observed_temp', 'error', 'abs_error']]
+    print(df)

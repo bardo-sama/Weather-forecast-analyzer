@@ -1,7 +1,6 @@
-from models.city import City
 import pandas as pd
 
-def get_one_data_set(city):
+def get_matched_pair(city):
 
     raw_weather_data = []
 
@@ -20,7 +19,7 @@ def get_one_data_set(city):
 
 def compare_forecast_with_observation(city):
 
-    weather_data = get_one_data_set(city)
+    weather_data = get_matched_pair(city)
 
     if weather_data is False:
         print("List is empty.")
@@ -29,15 +28,15 @@ def compare_forecast_with_observation(city):
     forecast = weather_data[0]
     observation = weather_data[-1]
 
-    forecast_df = forecast.weather_data
-    observation_df = observation.weather_data
+    forecast_df = forecast.weather_data.copy()
+    observation_df = observation.weather_data.copy()
 
-    forecast_df.rename(columns={'temperature_2m': 'forecast_temp'}, inplace=True)
-    observation_df.rename(columns={'temperature_2m':'observ_temp'}, inplace=True)
+    forecast_df = forecast_df.rename(columns={'temperature_2m': 'forecast_temp'}, inplace=False)
+    observation_df = observation_df.rename(columns={'temperature_2m':'observed_temp'}, inplace=False)
 
     compare_df = pd.merge(
         forecast_df,
-        observation_df[['datetime', 'observ_temp']],
+        observation_df[['datetime', 'observed_temp']],
         on='datetime',
         how='left'
     )
@@ -53,6 +52,10 @@ def compare_forecast_with_observation(city):
                       if column not in front_columns]
 
     compare_df = compare_df[front_columns + others_columns]
+
+    compare_df['error'] = compare_df['forecast_temp'] - compare_df['observed_temp']
+
+    compare_df['abs_error'] = abs(compare_df['error'])
 
 
     return compare_df
