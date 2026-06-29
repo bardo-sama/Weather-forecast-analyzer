@@ -38,7 +38,7 @@ def compare_forecast_with_observation(city):
         forecast_df,
         observation_df[['datetime', 'observed_temp']],
         on='datetime',
-        how='left'
+        how='inner'
     )
     compare_df['city'] = forecast.city_name
     compare_df['source'] = forecast.source
@@ -55,7 +55,7 @@ def compare_forecast_with_observation(city):
 
     compare_df['error'] = compare_df['forecast_temp'] - compare_df['observed_temp']
 
-    compare_df['abs_error'] = abs(compare_df['error'])
+    compare_df['abs_error'] = compare_df['error'].abs()
 
 
     return compare_df
