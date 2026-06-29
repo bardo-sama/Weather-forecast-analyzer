@@ -2,7 +2,7 @@ from behavior_scripts.create_city_class import create_city_class
 from behavior_scripts.create_observation_class import create_observation_class
 from storage.load_json import load_json, load_city_forecast_history
 from support_item.forecasts_status import get_pending_forecasts
-from analytics.forecast_comparison import get_matched_pair, compare_forecast_with_observation
+from analytics.forecast_comparison import compare_all_matched_pairs
 
 
 
@@ -26,8 +26,7 @@ if __name__ == '__main__':
     kyiv_city = create_observation_class(kyiv)
     lviv_city = create_observation_class(lviv)
 
-    test = get_matched_pair(zp_city)
-    test_pair = test[0]
-    compare_df = compare_forecast_with_observation(test_pair)
+    test = compare_all_matched_pairs(zp_city)
 
-    print(compare_df[['datetime', 'forecast_temp', 'observed_temp', 'error', 'abs_error']])
+    print(test[['datetime', 'lead_days', 'forecast_temp', 'observed_temp', 'error', 'abs_error']])
+    test.info()

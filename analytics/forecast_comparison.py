@@ -21,16 +21,15 @@ def compare_forecast_with_observation(pair):
     """
         Об'єднання однієї пари у дата-фрейм.
     ------------------------------------------
-        Створення стовпців 'error' та 'abs_error.
+        Створення стовпців 'error' та 'abs_error'.
     '"""
 
     forecast, observation = pair
-
     forecast_df = forecast.weather_data.copy()
     observation_df = observation.weather_data.copy()
 
-    forecast_df = forecast_df.rename(columns={'temperature_2m': 'forecast_temp'}, inplace=False)
-    observation_df = observation_df.rename(columns={'temperature_2m':'observed_temp'}, inplace=False)
+    forecast_df = forecast_df.rename(columns={'temperature_2m': 'forecast_temp'})
+    observation_df = observation_df.rename(columns={'temperature_2m':'observed_temp'})
 
     compare_df = pd.merge(
         forecast_df,
@@ -45,15 +44,25 @@ def compare_forecast_with_observation(pair):
     compare_df['lead_days'] = forecast.lead_days
 
     front_columns = ['city', 'source', 'collected_date', 'target_date', 'lead_days']
-
     others_columns = [column for column in compare_df.columns
                       if column not in front_columns]
 
     compare_df = compare_df[front_columns + others_columns]
-
     compare_df['error'] = compare_df['forecast_temp'] - compare_df['observed_temp']
-
     compare_df['abs_error'] = compare_df['error'].abs()
 
-
     return compare_df
+
+def compare_all_matched_pairs(city):
+
+    current_df_list = [ ]
+    pairs = get_matched_pair(city)
+    if not pairs:
+        print('List is empty')
+        return False
+
+    for pair in pairs:
+        current = compare_forecast_with_observation(pair)
+        current_df_list.append(current)
+
+    return pd.concat(current_df_list, ignore_index=True)
