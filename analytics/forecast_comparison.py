@@ -2,28 +2,22 @@ import pandas as pd
 
 def get_matched_pair(city):
 
-    raw_weather_data = []
+    matched_pair_list = []
 
-    forecast = city.forecasts[0]
-    observation = city.observations[0]
-
-    if forecast.target_date != observation.target_date:
-        print('Different target date.')
-        return False
-
-    raw_weather_data.append(forecast)
-    raw_weather_data.append(observation)
-
-    return raw_weather_data
+    for observation in city.observations:
+        for forecast in city.forecasts:
+            if observation.target_date == forecast.target_date:
+                current_data = (forecast, observation)
+                matched_pair_list.append(current_data)
 
 
-def compare_forecast_with_observation(city):
+    return matched_pair_list
 
-    weather_data = get_matched_pair(city)
 
-    if weather_data is False:
-        print("List is empty.")
-        return pd.DataFrame()
+def compare_forecast_with_observation(forecast, observation):
+
+
+
 
     forecast = weather_data[0]
     observation = weather_data[-1]
