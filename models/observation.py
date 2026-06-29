@@ -9,6 +9,9 @@ class Observation:
         self.target_date = target_date
         self.weather_data = weather_data
 
+    def __repr__(self):
+        return f"Class: Observation, target date: {self.target_date}"
+
     def show_summary(self):
             print('-' * 21)
             print(f'Джерело: {self.source}')

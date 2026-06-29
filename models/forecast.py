@@ -12,8 +12,7 @@ class Forecast:
         self.weather_data = weather_data
 
     def __repr__(self):
-        return (f'Collected date: {self.collected_date}\n'
-                f'Target date: {self.target_date}\n')
+        return f'Class: Forecast, collected date: {self.collected_date}, target date: {self.target_date}'
 
     def show_summary(self):
         print('-' * 21)

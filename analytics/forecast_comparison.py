@@ -1,11 +1,14 @@
 import pandas as pd
 
 def get_matched_pair(city):
+    """Збираємо список пар по target_date"""
 
     matched_pair_list = []
 
+    # Цикл через фактичні дані погоди
     for observation in city.observations:
         for forecast in city.forecasts:
+            # Перебір по відповідній даті
             if observation.target_date == forecast.target_date:
                 current_data = (forecast, observation)
                 matched_pair_list.append(current_data)
@@ -14,13 +17,14 @@ def get_matched_pair(city):
     return matched_pair_list
 
 
-def compare_forecast_with_observation(forecast, observation):
+def compare_forecast_with_observation(pair):
+    """
+        Об'єднання однієї пари у дата-фрейм.
+    ------------------------------------------
+        Створення стовпців 'error' та 'abs_error.
+    '"""
 
-
-
-
-    forecast = weather_data[0]
-    observation = weather_data[-1]
+    forecast, observation = pair
 
     forecast_df = forecast.weather_data.copy()
     observation_df = observation.weather_data.copy()
