@@ -1,4 +1,6 @@
 import pandas as pd
+from numpy.ma.extras import column_stack
+
 
 def get_matched_pair(city):
     """Збираємо список пар по target_date"""
@@ -10,8 +12,10 @@ def get_matched_pair(city):
         for forecast in city.forecasts:
             # Перебір по відповідній даті
             if observation.target_date == forecast.target_date:
-                current_data = (forecast, observation)
-                matched_pair_list.append(current_data)
+                # Відсіємо все що менше нуля
+                if forecast.lead_days >= 0:
+                    current_data = (forecast, observation)
+                    matched_pair_list.append(current_data)
 
 
     return matched_pair_list
@@ -54,12 +58,15 @@ def compare_forecast_with_observation(pair):
     return compare_df
 
 def compare_all_matched_pairs(city):
+    """Збираємо все пари у дата-фрейм."""
 
     current_df_list = [ ]
     pairs = get_matched_pair(city)
+
+    # Повертаємо пустий ДТ, якщо get_matched_pair не впорався.
     if not pairs:
         print('List is empty')
-        return False
+        return pd.DataFrame()
 
     for pair in pairs:
         current = compare_forecast_with_observation(pair)

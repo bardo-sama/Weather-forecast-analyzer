@@ -28,5 +28,5 @@ if __name__ == '__main__':
 
     test = compare_all_matched_pairs(zp_city)
 
-    print(test[['datetime', 'lead_days', 'forecast_temp', 'observed_temp', 'error', 'abs_error']])
-    test.info()
+
+
