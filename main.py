@@ -1,4 +1,4 @@
-from numpy.ma.core import count
+
 
 from behavior_scripts.create_city_class import create_city_class
 from behavior_scripts.create_observation_class import create_observation_class
@@ -34,19 +34,7 @@ if __name__ == '__main__':
 
     test_1 = get_lead_days_summary(test)
 
-    for values in test_1:
-        count = 0
-        for key, value in values.items():
-            count += 1
-            if count == 1:
-                print('-' * 12)
-                print(f"{key} : {value}")
-            elif count == 5:
-                print(f"{key} : {value}")
-                print('-' * 12)
-                count = 0
-            else:
-                print(f"{key} : {value}")
+    test_1.info()
 
 
 
