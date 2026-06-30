@@ -1,5 +1,5 @@
 import pandas as pd
-from numpy.ma.extras import column_stack
+
 
 
 def get_matched_pair(city):
@@ -73,3 +73,25 @@ def compare_all_matched_pairs(city):
         current_df_list.append(current)
 
     return pd.concat(current_df_list, ignore_index=True)
+
+def get_lead_days_summary(compare_df):
+    numb = compare_df['lead_days'].max()
+    numb = range(0, numb + 1)
+    current_list = []
+    for  value in numb:
+         if (compare_df['lead_days'] == value).any():
+             current_df = compare_df[compare_df['lead_days'] == value]
+             current_dict = {
+                 'lead_days': value,
+                 'mean_error':  current_df['error'].mean().round(2),
+                 'mean_abs_error': current_df['abs_error'].mean().round(2),
+                 'max_abs_error': current_df['abs_error'].max().round(2),
+                 'rows_compared': (compare_df['lead_days'] == value).sum()
+             }
+             current_list.append(current_dict)
+
+    return current_list
+
+
+
+
