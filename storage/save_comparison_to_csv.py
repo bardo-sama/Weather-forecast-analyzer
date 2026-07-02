@@ -12,4 +12,4 @@ def comparison_to_csv(df):
         filename = name_for_comparison_df(df)
 
     filename.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(filename, index=False, encoding='utf-8')
+    df.to_csv(filename, index=False, encoding='utf-8', float_format='%.2f')

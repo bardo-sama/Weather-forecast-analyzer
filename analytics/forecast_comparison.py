@@ -1,7 +1,5 @@
 import pandas as pd
-from settings import BASE_DIR_DATA
-from datetime import datetime
-from pathlib import Path
+
 
 def get_matched_pair(city):
     """Збираємо список пар по target_date"""
@@ -53,8 +51,8 @@ def compare_forecast_with_observation(pair):
                       if column not in front_columns]
 
     compare_df = compare_df[front_columns + others_columns]
-    compare_df['error'] = compare_df['forecast_temp'] - compare_df['observed_temp']
-    compare_df['abs_error'] = compare_df['error'].abs()
+    compare_df['error'] = (compare_df['forecast_temp'] - compare_df['observed_temp']).round(2)
+    compare_df['abs_error'] = compare_df['error'].abs().round(2)
 
     return compare_df
 

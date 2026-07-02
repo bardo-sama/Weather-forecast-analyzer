@@ -90,15 +90,15 @@ def name_for_comparison_df(df):
     city_name = df['city'].iloc[0]
     source = df['source'].iloc[0]
     filename = BASE_DIR_DATA / 'comparison' / city_name / source / f"lead_days_summary_{datetime.now().date()}.csv"
-    filename.parent.mkdir(parents=True, exist_ok=True)
-    return BASE_DIR_DATA / 'comparison' / city_name / source / f"comparison_{datetime.now().date()}.csv"
+
+    return filename
 
 def name_for_lead_days_summary(df):
 
     city_name = df['city'].iloc[0]
     source = df['source'].iloc[0]
     filename = BASE_DIR_DATA / 'comparison' / city_name / source / f"lead_days_summary_{datetime.now().date()}.csv"
-    filename.parent.mkdir(parents=True, exist_ok=True)
+
 
     return filename
 

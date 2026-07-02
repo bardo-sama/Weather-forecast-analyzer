@@ -1,10 +1,7 @@
-
-
 from behavior_scripts.create_city_class import create_city_class
 from behavior_scripts.create_observation_class import create_observation_class
-from storage.load_json import load_json, load_city_forecast_history
+from storage.load_json import load_city_forecast_history
 from storage.save_comparison_to_csv import comparison_to_csv
-from support_item.forecasts_status import get_pending_forecasts
 from analytics.forecast_comparison import compare_all_matched_pairs, get_lead_days_summary
 
 
@@ -41,7 +38,9 @@ if __name__ == '__main__':
     test_data_list = [zp_test, zp_test_1, dnipro_test, dnipro_test_1,
                       kyiv_test, kyiv_test_1, lviv_test, lviv_test_1]
 
-    save_all_compare = [comparison_to_csv(df) for df in test_data_list]
+    for df in test_data_list:
+        comparison_to_csv(df)
+
 
 
 
