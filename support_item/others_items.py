@@ -1,7 +1,8 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 from models.city import City
 from models.forecast import Forecast
 from models.observation import Observation
+from settings import BASE_DIR_DATA
 
 from pathlib import Path
 
@@ -82,9 +83,23 @@ def name_for_json(data):
     source = data['forecasts'][0]['source']
     collected_date = data['forecasts'][0]['collected_date']
 
-    return Path("data") / "forecasts" / city_name / source / f"{collected_date}.json"
+    return BASE_DIR_DATA / "forecasts" / city_name / source / f"{collected_date}.json"
 
+def name_for_comparison_df(df):
 
+    city_name = df['city'].iloc[0]
+    source = df['source'].iloc[0]
+    filename = BASE_DIR_DATA / 'comparison' / city_name / source / f"lead_days_summary_{datetime.now().date()}.csv"
+    filename.parent.mkdir(parents=True, exist_ok=True)
+    return BASE_DIR_DATA / 'comparison' / city_name / source / f"comparison_{datetime.now().date()}.csv"
 
+def name_for_lead_days_summary(df):
+
+    city_name = df['city'].iloc[0]
+    source = df['source'].iloc[0]
+    filename = BASE_DIR_DATA / 'comparison' / city_name / source / f"lead_days_summary_{datetime.now().date()}.csv"
+    filename.parent.mkdir(parents=True, exist_ok=True)
+
+    return filename
 
 

@@ -1,4 +1,7 @@
 import pandas as pd
+from settings import BASE_DIR_DATA
+from datetime import datetime
+from pathlib import Path
 
 def get_matched_pair(city):
     """Збираємо список пар по target_date"""
@@ -70,7 +73,8 @@ def compare_all_matched_pairs(city):
         current = compare_forecast_with_observation(pair)
         current_df_list.append(current)
 
-    return pd.concat(current_df_list, ignore_index=True)
+    result = pd.concat(current_df_list, ignore_index=True)
+    return result
 
 def get_lead_days_summary(compare_df):
 
@@ -84,21 +88,24 @@ def get_lead_days_summary(compare_df):
     max_lead_range = range(0, max_lead_days + 1)
 
     for  value in max_lead_range:
+
          if (compare_df['lead_days'] == value).any():
              current_df = compare_df[compare_df['lead_days'] == value]
+
              if not current_df.empty:
                 current_dict = {
-                    'city': current_df['city'],
-                    'source': current_df['source'],
+                    'city': current_df.iloc[0]['city'],
+                    'source': current_df.iloc[0]['source'],
                     'lead_days': value,
                     'mean_error':  current_df['error'].mean().round(2),
                     'mean_abs_error': current_df['abs_error'].mean().round(2),
                     'max_abs_error': current_df['abs_error'].max().round(2),
-                    'rows_compared': (current_df['lead_days'] == value).sum()
+                    'rows_compared': len(current_df)
                 }
                 current_list.append(current_dict)
 
-    return pd.DataFrame(current_list)
+    result = pd.DataFrame(current_list)
+    return result
 
 
 

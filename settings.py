@@ -1,6 +1,7 @@
 from pathlib import Path
 
 BASE_DIR_CACHE = Path('cache')
+BASE_DIR_DATA = Path('data')
 
 
 CITY_CACHE = BASE_DIR_CACHE / 'city_name_cache'
