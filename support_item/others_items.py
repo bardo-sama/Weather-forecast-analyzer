@@ -89,7 +89,7 @@ def name_for_comparison_df(df):
 
     city_name = df['city'].iloc[0]
     source = df['source'].iloc[0]
-    filename = BASE_DIR_DATA / 'comparison' / city_name / source / f"lead_days_summary_{datetime.now().date()}.csv"
+    filename = BASE_DIR_DATA / 'comparison' / city_name / source / f"comparison_{datetime.now().date()}.csv"
 
     return filename
 
