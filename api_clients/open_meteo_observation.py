@@ -23,6 +23,7 @@ def fetch_observation(city):
         "start_date": start_date,
         "end_date": end_date,
         "hourly": PARAMS,
+        "models": "best_match"
     }
 
     result = fetch_json(session=session_observation, url=REQUEST_WEATHER_OBSERVATION_URL, params=params)

@@ -11,7 +11,8 @@ def fetch_forecast(city):
         'latitude': city.latitude,
         'longitude': city.longitude,
         'hourly': PARAMS,
-        "forecast_days": 7  # max = 16 days
+        'forecast_days': 7, # max = 16 days
+        'models': "best_match"
     }
     # Час початку запиту
     requests_time = datetime.now(timezone.utc)

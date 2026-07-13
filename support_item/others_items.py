@@ -62,7 +62,12 @@ def add_forecast_obj(data):
         data.iloc[0]['longitude'],
         data.iloc[0]['collected_date'],
         data.iloc[0]['date'],
-        data[['datetime', 'date', 'hour', 'temperature_2m']])
+        data[["datetime", "date", "hour", "temperature_2m",
+              "apparent_temperature", "precipitation",
+              "precipitation_probability", "relative_humidity_2m",
+              "dew_point_2m", "rain",  "showers", "snowfall",
+              "shortwave_radiation", "wet_bulb_temperature_2m",
+              "cape", "lifted_index",]])
 
 def add_observation_obj(data):
     """Створення класу з факт. погодними даними """
@@ -73,8 +78,12 @@ def add_observation_obj(data):
         data.iloc[0]["latitude"],
         data.iloc[0]["longitude"],
         data.iloc[0]["date"],
-        data[["datetime", "date", "hour", "temperature_2m"]]
-    )
+        data[["datetime", "date", "hour", "temperature_2m",
+              "apparent_temperature", "precipitation",
+              "precipitation_probability", "relative_humidity_2m",
+              "dew_point_2m", "rain", "showers", "snowfall",
+              "shortwave_radiation", "wet_bulb_temperature_2m",
+              "cape", "lifted_index",]])
 
 def name_for_json(data):
     """Створення шаблону директорії"""
