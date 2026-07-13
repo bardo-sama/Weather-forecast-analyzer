@@ -6,6 +6,7 @@ from settings import BASE_DIR_DATA
 
 from pathlib import Path
 
+# Нормалізуємо назву міста під формат, який очікує Geonames/Open-Meteo.
 def get_geonames(city_name):
     """
     Validate the city name.
@@ -21,6 +22,7 @@ def get_geonames(city_name):
 
     return city_name.strip().title()
 
+# Повертаємо назву міста до внутрішнього формату проєкту.
 def return_right_name(name):
 
     if name == 'Zaporizhzhya':
@@ -33,6 +35,7 @@ def return_right_name(name):
     else:
         return name.strip().title()
 
+# Перетворюємо ISO-дату з відповіді API у формат YYYY-MM-DD.
 def pretty_date(date, key):
 
     raw_date = date.get(key, None)
@@ -43,6 +46,7 @@ def pretty_date(date, key):
     dt_clean = dt.strftime("%Y-%m-%d")
     return dt_clean
 
+# Створюємо об'єкт City з уже очищених даних міста.
 def add_city_obj(city_data):
 
     return City(
@@ -53,6 +57,7 @@ def add_city_obj(city_data):
         city_data.get('timezone'))
 
 
+# Створюємо Forecast для одного дня та передаємо йому погодні дані разом з units.
 def add_forecast_obj(data):
 
     return Forecast(
@@ -67,8 +72,10 @@ def add_forecast_obj(data):
               "precipitation_probability", "relative_humidity_2m",
               "dew_point_2m", "rain",  "showers", "snowfall",
               "shortwave_radiation", "wet_bulb_temperature_2m",
-              "cape", "lifted_index",]])
+              "cape", "lifted_index",]],
+        data.attrs.get('units', {}))
 
+# Створюємо Observation для одного дня та передаємо йому погодні дані разом з units.
 def add_observation_obj(data):
     """Створення класу з факт. погодними даними """
 
@@ -83,8 +90,10 @@ def add_observation_obj(data):
               "precipitation_probability", "relative_humidity_2m",
               "dew_point_2m", "rain", "showers", "snowfall",
               "shortwave_radiation", "wet_bulb_temperature_2m",
-              "cape", "lifted_index",]])
+              "cape", "lifted_index",]],
+        data.attrs.get('units', {}))
 
+# Формуємо шлях для JSON з історією прогнозів міста.
 def name_for_json(data):
     """Створення шаблону директорії"""
 
@@ -94,6 +103,7 @@ def name_for_json(data):
 
     return BASE_DIR_DATA / "forecasts" / city_name / source / f"{collected_date}.json"
 
+# Формуємо шлях для CSV з погодинним порівнянням прогнозу та фактичних даних.
 def name_for_comparison_df(df):
 
     city_name = df['city'].iloc[0]
@@ -102,6 +112,7 @@ def name_for_comparison_df(df):
 
     return filename
 
+# Формуємо шлях для CSV зі зведенням похибки за lead_days.
 def name_for_lead_days_summary(df):
 
     city_name = df['city'].iloc[0]
@@ -110,5 +121,3 @@ def name_for_lead_days_summary(df):
 
 
     return filename
-
-
