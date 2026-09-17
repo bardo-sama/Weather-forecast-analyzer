@@ -1,4 +1,4 @@
-from support_item.helpers import return_right_name
+from support_item.others_items import return_right_name
 
 def city_parser(city):
     if not city or city is None:

@@ -1,14 +1,15 @@
 from api_clients.open_meteo_city_name import fetch_city
 from api_clients.open_meteo_forecast import fetch_forecast
 from parsers.city_parser import city_parser
-from parsers.forecast_parser import parse_forecast
-from support_item.helpers import add_city_obj, add_forecast_obj
+from parsers.forecast_parser import parse_forecast, split_forecast_by_date
+from support_item.others_items import add_city_obj, add_forecast_obj
 from storage.save_to_json import save_city_to_json
 
 def create_city_class(city_name, country_code):
 
     # Робимо запит міста
     request = fetch_city(city_name, country_code)
+
 
     # Чистимо дані міста
     city = city_parser(request)
@@ -30,14 +31,20 @@ def create_city_class(city_name, country_code):
         print(f"Forecast data is empty")
         return city
 
-    # Створ. об'єкт класу - Forecast
-    forecast_data = add_forecast_obj(forecast)
+    # Розділяємо по днях
+    forecasts = split_forecast_by_date(forecast)
 
-    # Додаємо прогноз до міста
-    city.add_forecast(forecast_data)
+    # Створ. об'єкти класу - Forecast та додаємо прогноз до міста
+    for forecast in forecasts:
+        forecasts_obj = add_forecast_obj(forecast)
+        city.add_forecast(forecasts_obj)
+
 
     # Вивід результату
     city.show_city()
-    city_forecast = [forecast.show_summary() for forecast in city.forecasts]
+
+    # Зберігаємо екземпляр
+    city_json = city.to_dict()
+    save_city_to_json(city_json)
 
     return city

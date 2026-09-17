@@ -3,7 +3,7 @@ from datetime import timedelta, datetime, timezone
 from settings import FORECAST_CACHE, REQUEST_WEATHER_FORECAST_URL, PARAMS
 from api_clients.get_request_api import fetch_json
 
-session_forecast = requests_cache.CachedSession(FORECAST_CACHE, expire_after=timedelta(hours=24))
+session_forecast = requests_cache.CachedSession(FORECAST_CACHE, expire_after=timedelta(hours=12))
 
 def fetch_forecast(city):
     # Параметри запиту
@@ -11,7 +11,8 @@ def fetch_forecast(city):
         'latitude': city.latitude,
         'longitude': city.longitude,
         'hourly': PARAMS,
-        "forecast_days": 2  # max = 16 days
+        'forecast_days': 7, # max = 16 days
+        'models': "best_match"
     }
     # Час початку запиту
     requests_time = datetime.now(timezone.utc)
@@ -24,6 +25,7 @@ def fetch_forecast(city):
 
     return {
         'requested_time': requests_time.isoformat(),
+        'source': 'open_meteo',
         'data': result
     }
 
